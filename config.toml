@@ -1,0 +1,57 @@
+baseURL = 'http://www.seqred.eu/'
+languageCode = 'en-GB'
+defaultContentLanguage = 'en'
+
+[languages]
+
+[languages.en]
+    title = 'SEQRED | Secure OT and IoT - Cybersecurity audits - Cybersecurity advisory'
+    weight = 1
+
+    [[languages.en.menu.main]]
+        identifier = "About"
+        name = "ABOUT"
+        url = "#"
+        weight = 1
+
+    [[languages.en.menu.main]]
+        name = "ABOUT SEQRED"
+        url = "/en/about-us"
+        weight = 1
+        parent = "About" # Entry in main menu 
+
+    [[languages.en.menu.main]]
+        name = "PRESS RELEASES"
+        url = "/en/press-releases"
+        weight = 2
+        parent = "About" # Entry in main menu
+
+    [[languages.en.menu.main]]
+        identifier = "Services"
+        name = "SERVICES"
+        url = "/en/services/"
+        weight = 2
+        
+    [[languages.en.menu.main]]
+        identifier = "Products"
+        name = "PRODUCTS"
+        url = "/en/services/"
+        weight = 3
+    
+    [[languages.en.menu.main]]
+        identifier = "Events"
+        name = "EVENTS"
+        url = "/en/events/"
+        weight = 4
+
+    [[languages.en.menu.main]]
+        identifier = "Blog"
+        name = "BLOG"
+        url = "/en/blog/"
+        weight = 5
+
+    [[languages.en.menu.main]]
+        identifier = "Contact"
+        name = "CONTACT"
+        url = "/en/contact/"
+        weight = 6
