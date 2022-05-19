@@ -1,0 +1,13 @@
+{{ range .Translations }}
+<li class="navbar-item ms-auto no-wrap">
+    <a
+      href="/{{.Language}}/"
+      class="nav-link"
+      hreflang="{{ .Site.LanguageCode}}"
+      lang="{{.Lang}}"
+    >
+      <img src="/img/{{.Language}}.jpg" alt="{{ .Language.LanguageName }}" />
+      <span style="margin-left: 0.3em">{{.Lang}}</span>
+    </a>
+  </li>
+{{ end }}
