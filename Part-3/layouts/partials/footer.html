@@ -1,0 +1,35 @@
+<footer>
+    <div class="container py-4">
+        <div class="row mb-4">
+            <div class="col-md-4 col-sm-4 col-xs-4">
+                <div class="footer-text pull-left">
+                    <div class="social mt-2 mb-3 text-white"> 
+                        <a href="{{ .Site.Params.facebookUrl }}" target="_blank"><i class="fa-brands fa-facebook fa-xl"></i></a>
+                        <a href="{{ .Site.Params.twitterUrl }}" target="_blank"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                        <a href="{{ .Site.Params.linkedInUrl }}" target="_blank"><i class="fa-brands fa-linkedin fa-lg"></i></a>
+                    </div>
+                    <div class="company-info">
+                        <span class="fw-bold sq-red">SEQRED&nbsp;</span>{{ i18n "globalOrganization" . }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 col-sm-2 col-xs-2"></div>
+            {{ range .Site.Menus.footer }} 
+            <div class="col-md-2 col-sm-2 col-xs-2">
+                <span class="heading">{{ .Name }}</span>
+                {{ if .HasChildren }}
+                <ul>
+                    {{ range .Children }}
+                    <li><a href="#">{{ .Name }}</a></li>
+                    {{ end }}
+                </ul>
+                {{end}}
+            </div>
+            {{end}}
+        </div>
+        <div class="row text-white">
+            <div class="col-md-10 col-sm-10 col-xs-10"></div>
+            <div class="col-md-2 col-sm-2 col-xs-2"><a href="#">{{ i18n "privacyPolicy" . }}</a></div>
+        </div>
+    </div>
+</footer>

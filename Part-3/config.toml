@@ -1,0 +1,159 @@
+baseURL = 'http://www.seqred.eu/'
+defaultContentLanguage = 'en'
+
+[params]
+facebookUrl = "https://facebook.com/pl.seqred"
+linkedInUrl = "https://twitter.com/seqred_"
+twitterUrl = "https://linkedin.com/company/seqred"
+
+[languages]
+
+[languages.en]
+    title = 'SEQRED | Secure OT and IoT - Cybersecurity audits - Cybersecurity advisory'
+    weight = 1
+    languageName = 'English'
+    languageCode = 'en-GB'
+
+    [[languages.en.menu.main]]
+        identifier = "About"
+        name = "ABOUT"
+        url = "#"
+        weight = 1
+
+    [[languages.en.menu.main]]
+        name = "ABOUT SEQRED"
+        url = "/en/about-us"
+        weight = 1
+        parent = "About" # Entry in main menu 
+
+    [[languages.en.menu.main]]
+        name = "PRESS RELEASES"
+        url = "/en/press-releases"
+        weight = 2
+        parent = "About" # Entry in main menu
+
+    [[languages.en.menu.main]]
+        identifier = "Services"
+        name = "SERVICES"
+        url = "/en/services/"
+        weight = 3
+
+    [[languages.en.menu.main]]        
+        identifier = "Products"
+        name = "PRODUCTS"
+        url = "/en/products/"
+        weight = 4
+    
+    [[languages.en.menu.main]]
+        identifier = "Events"
+        name = "EVENTS"
+        url = "/en/events/"
+        weight = 5
+    
+    [[languages.en.menu.main]]
+        identifier = "Career"
+        name = "CAREER"
+        url = "/en/career/"
+        weight = 6
+    
+    [[languages.en.menu.main]]
+        identifier = "Blog"
+        name = "BLOG"
+        url = "/en/blog/"
+        weight = 7
+
+    [[languages.en.menu.main]]
+        identifier = "Contact"
+        name = "CONTACT"
+        url = "/en/contact/"
+        weight = 8
+
+[languages.pl]
+    title = 'SEQRED | Bezpieczne OT i IoT - Audyty bezpieczeństwa - Cyberbezpieczeństwo'
+    weight = 1
+    languageName = 'Polski'
+    languageCode = 'pl'
+    
+    [[languages.pl.menu.main]]
+        identifier = "About"
+        name = "O NAS"
+        url = "#"
+        weight = 1
+
+    [[languages.pl.menu.main]]
+        name = "SEQRED"
+        url = "/o-nas"
+        weight = 1
+        parent = "About" # Entry in main menu 
+
+    [[languages.pl.menu.main]]
+        name = "INFORMACJE PRASOWE"
+        url = "/informacje-prasowe"
+        weight = 2
+        parent = "About" # Entry in main menu
+
+    [[languages.pl.menu.main]]
+        identifier = "Services"
+        name = "USŁUGI"
+        url = "/pl/uslugi/"
+        weight = 3
+
+    [[languages.pl.menu.main]]
+        identifier = "Products"
+        name = "PRODUKTY"
+        url = "/pl/produkty/"
+        weight = 4
+        
+    [[languages.pl.menu.main]]
+        identifier = "Events"
+        name = "WYDARZENIA"
+        url = "/pl/wydarzenia/"
+        weight = 5
+
+    [[languages.pl.menu.main]]
+        identifier = "Career"
+        name = "KARIERA"
+        url = "/pl/kariera/"
+        weight = 6
+
+    [[languages.pl.menu.main]]
+        identifier = "Blog"
+        name = "BLOG"
+        url = "/pl/blog/"
+        weight = 7
+
+    [[languages.pl.menu.main]]
+        identifier = "Contact"
+        name = "KONTAKT"
+        url = "/pl/kontakt/"
+        weight = 8
+
+    [[languages.en.menu.footer]]
+        identifier = "Services"
+        name = "SERVICES"
+        url = "/service"
+        weight = 1
+
+    [[languages.en.menu.footer]]
+        name = "IT Consulting"
+        url = "/it-consulting"
+        weight = 1
+        parent ="Services"
+
+    [[languages.en.menu.footer]]
+        name = "Development"
+        url = "/development"
+        weight = 1
+        parent ="Services"
+
+    [[languages.en.menu.footer]]
+        name = "Cloud"
+        url = "/cloud"
+        weight = 1
+        parent ="Services"
+
+    [[languages.en.menu.footer]]
+        name = "Support"
+        url = "/support"
+        weight = 1
+        parent ="Services"
