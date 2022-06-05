@@ -1,8 +1,5 @@
 .DS_Store
-/Part-1/public/
-/Part-2/public/
-/Part-1/resources/_gen/
-/Part-2/resources/_gen/
-/Part-1/.hugo_build.lock
-/Part-2/.hugo_build.lock
+/Part-*/public/
+/Part-*/resources/_gen/
+/Part-*/.hugo_build.lock
 /.hugo_build.lock

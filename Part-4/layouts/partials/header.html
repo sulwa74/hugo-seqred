@@ -1,0 +1,31 @@
+<header>
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="navbar-brand" href="#">
+            <img src="/img/logo.jpg" alt="SEQRED" class="d-inline-block align-top" />
+          </a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-display="static" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav w-100">   
+                {{ $currentPage := . }}
+                {{ range .Site.Menus.main }} {{ if .HasChildren }}             
+                <li class='nav-item dropdown {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}'>
+                    <a id="dropdown-{{ .Identifier }}" href="{{ .URL }}" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false"><span>{{ .Name }}</span></a>
+                    <ul class="dropdown-menu" aria-labelledby="dropdown-1">
+                        {{ range .Children }}
+                        <li class="nav-item"><a class="dropdown-item" href="{{.URL}}">{{.Name}}</a></li>
+                        {{ end }}
+                    </ul>
+                </li>
+                {{else}}
+                <li class='nav-item {{ if $currentPage.HasMenuCurrent "main" . }}active{{ end }}'><a href="{{ .URL }}" class="nav-link"><span>{{ .Name }}</span></a></li>
+                {{end}}
+                {{end}}
+                {{ partial "langnav" . }}
+            </ul>
+          </div>
+        </nav>
+      </div>
+</header>
