@@ -1,0 +1,120 @@
+{{ define "main" }}
+<main aria-role="main">
+    <div class="container-fluid p-0">
+        <div id="index-banner">
+            <div class="container">
+                {{ with .Site.GetPage "/index/index"}}
+                <div class="row">
+                    <div class="col col-xl-8 col-lg-6 col-md-12">
+                        <div class="banner-text">
+                            <blockquote>
+                                {{ range .Params.Subtitle }}
+                                <h1>{{ . }}</h1>
+                                {{ end }}
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="col col-xl-4 col-lg-6 col-md-12">
+                        <div class="news-header">
+                            <h5>{{ .Params.News }}</h5>
+                        </div>
+                        {{ end }}
+                        <div class="news-body px-4">
+                            {{ $news := .Site.GetPage "/news"}}
+                            {{ range $news.Pages }}
+                            <blockquote class="mt-4">
+                            <p>
+                                <a href="{{.Permalink}}">{{ .Params.Title}}</a>
+                            <p>
+                            </blockquote>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{ $sections := .Site.GetPage "/index"}}
+        {{ range $index, $element := sort ($sections.Resources.Match "section*.md") ".Name"}}
+
+        {{ if (eq $index 0) }}
+        <div class="container pt-4 pb-3">
+            <h2 class="section-header">{{ .Title }}</h2>
+        </div>
+        <div class="container-fluid bg-gray">
+            <div class="container py-4">
+                <p>
+                    <img class="float-start pt-4 pe-4" src="{{ .Params.Icon }}">
+                    {{ .Content }}
+                </p>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ if (eq $index 1) }}
+        <div class="container pt-4">
+            <h2 class="section-header">{{ .Title }}</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="container pt-2 pb-4">
+                <div class="row">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ if (eq $index 2) }}
+        <div class="container pt-4">
+            <h2 class="section-header">{{ .Title }}</h2>
+        </div>
+        <div class="container-fluid bg-light">
+            <div class="container py-4">
+                    {{ .Content }}
+                    <div class="row">
+                        {{ range .Params.Icons }}
+                        <div class="col-md-4 text-center">
+                            <img class="mx-auto d-block py-4" src="{{ .image }}">
+                            {{ .text }}
+                        </div>
+                        {{ end }}
+                    </div>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ if (eq $index 3) }}
+        <div class="container pt-4">
+            <h2 class="section-header">{{ .Title }}</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="container py-4">
+                <div class="row">
+                    {{ range .Params.Partners }}
+                    <div class="col-md-4 text-center">
+                        <img class="mx-auto d-block py-4" src="{{ .logo }}">
+                        {{ .text }}
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ if (eq $index 4) }}
+        <div class="container pt-4">
+            <h2 class="section-header">{{ .Title }}</h2>
+        </div>
+        <div class="container-fluid">
+            <div class="container py-4">
+                <div class="row">
+                    {{ .Content }}
+                </div>
+            </div>
+        </div>
+        {{ end }}
+
+        {{ end }}
+        {{ .Content }}
+    </div>
+</main>
+{{ end }}
