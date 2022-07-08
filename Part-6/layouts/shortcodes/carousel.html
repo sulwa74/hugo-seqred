@@ -1,0 +1,53 @@
+{{ $id := .Get "id" }}
+{{ $active := "class=\"active\"" }}
+{{ $current := "aria-current=\"true\"" }}
+{{ $len := len $.Page.Params.carouselitems }}
+{{ printf "<div class=\"d-block\">" | htmlUnescape | safeHTML }}
+{{ printf "<div id=\"%s\"  class=\"carousel slide\" data-bs-ride=\"carousel\">" $id | htmlUnescape | safeHTML }}
+{{ if gt $len 1 }}
+{{ printf "<div class=\"carousel-indicators\">" | htmlUnescape |safeHTML }}
+{{- range $index, $element := $.Page.Params.carouselitems -}}
+{{- printf "<button type=\"button\" data-bs-target=\"#%s\" data-bs-slide-to=\"%d\" %s %s aria-label=\"slide-%d\"></button>" $id $index $active $current $index | htmlUnescape | safeHTML -}}
+{{- $current = "" -}}
+{{- $active = "" -}}
+{{ end }}
+{{ printf "</div>" | htmlUnescape |safeHTML }}    
+{{ end }}
+{{- printf "<div class=\"carousel-inner\">" | htmlUnescape | safeHTML -}}
+{{ $active = "active" }}     
+{{ range $.Page.Params.carouselitems }}
+{{- printf "<div class=\"carousel-item %s\">" $active | htmlUnescape | safeHTML -}}
+{{- printf "<img src=\"%s\" class=\"d-block w-100 carousel-scale\" alt=\"%s\">" .src .shorttext | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"carousel-caption\">" | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"container pt-4\">" | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"row\">" | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"col-md-6 col-lg-5\">" | htmlUnescape | safeHTML -}}
+{{- printf "<h1 class=\"shadow\">%s</h1>" .label | htmlUnescape | safeHTML -}}
+{{- printf "<p class=\"pt-2 ps-4 d-lg-none shadow\">%s</p>" .shorttext | htmlUnescape | safeHTML -}}
+{{- printf "<p class=\"pt-2 ps-4 d-none d-lg-block shadow\">%s</p>" .fulltext | htmlUnescape | safeHTML -}}
+{{- $button := .button -}}
+{{ with .link }}
+{{- printf "<a href=\"%s\" class=\"btn btn-primary text-white\" role=\"button\">%s</a>" . $button | htmlUnescape | safeHTML -}}
+{{ end }}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"col-md-6 col-lg-7\">" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}    
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- $active = "" -}}
+{{ end }}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{ if gt $len 1 }}
+{{- printf "<button class=\"carousel-control-prev\" type=\"button\" data-bs-target=\"#%s\" data-bs-slide=\"prev\">" $id | htmlUnescape | safeHTML -}}
+{{- printf "<span class=\"carousel-control-prev-icon\" aria-hidden=\"true\"></span>" | htmlUnescape | safeHTML -}}
+{{- printf "<span class=\"visually-hidden\">Previous</span>" | htmlUnescape | safeHTML -}}
+{{- printf "</button>" | htmlUnescape | safeHTML -}}
+{{- printf "<button class=\"carousel-control-next\" type=\"button\" data-bs-target=\"#%s\" data-bs-slide=\"next\">" $id | htmlUnescape | safeHTML -}}
+{{- printf "<span class=\"carousel-control-next-icon\" aria-hidden=\"true\"></span>" | htmlUnescape | safeHTML -}}
+{{- printf "<span class=\"visually-hidden\">Next</span>" | htmlUnescape | safeHTML -}}
+{{- printf "</button>" | htmlUnescape | safeHTML -}}
+{{ end }}
+{{- printf "</div>" | htmlUnescape |safeHTML -}}
+{{ printf "</div>" | htmlUnescape | safeHTML }}

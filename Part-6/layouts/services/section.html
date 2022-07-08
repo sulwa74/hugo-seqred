@@ -1,0 +1,76 @@
+{{ define "main" }} 
+{{ $active := "active" }} 
+{{ $len := len .Pages }}
+<div class="d-block">
+  <div id="service-gallery" class="carousel slide" data-bs-ride="carousel">
+    {{ if gt $len 1 }}
+    <div class="carousel-indicators">
+      {{- range $index, $element := .Pages.ByDate.Reverse -}}
+      <button
+        type="button"
+        data-bs-target="#service-gallery"
+        data-bs-slide-to="{{- $index -}}"
+        {{ if gt (len $active) 0 }} class="active" aria-current="true" {{ end }}
+        aria-label="slide-{{- $index -}}"
+      ></button>
+      {{ $active = "" }} 
+      {{ end }}
+    </div>
+    {{ end }}
+    <div class="carousel-inner">
+      {{ $active = "active" }} 
+      {{ range .Pages.ByDate.Reverse }}
+      <div class="carousel-item {{ $active }}">
+        <img
+          src="{{- .Params.image -}}"
+          class="d-block w-100 carousel-scale"
+          alt="{{- .Params.short -}}"
+        />
+        <div class="carousel-caption">
+          <div class="container pt-4">
+            <div class="row">
+              <div class="col-md-6 col-lg-5">
+                <h1 class="shadow">{{ .Title }}</h1>
+                <p class="pt-2 ps-4 d-lg-none shadow">{{ .Params.short }}</p>
+                <p class="pt-2 ps-4 d-none d-lg-block shadow">
+                  {{ .Params.description }}
+                </p>
+                {{ with .Permalink }}
+                <a
+                  href="{{ . }}"
+                  class="btn btn-primary text-white"
+                  role="button"
+                  >{{ i18n "more" . }}</a>
+                {{ end }}
+              </div>
+              <div class="col-md-6 col-lg-7"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {{- $active = "" -}} 
+      {{ end }}
+    </div>
+    {{ if gt $len 1 }}
+    <button
+      class="carousel-control-prev"
+      type="button"
+      data-bs-target="#service-gallery"
+      data-bs-slide="prev"
+    >
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button
+      class="carousel-control-next"
+      type="button"
+      data-bs-target="#service-gallery"
+      data-bs-slide="next"
+    >
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

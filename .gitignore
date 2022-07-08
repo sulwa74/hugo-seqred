@@ -3,3 +3,6 @@
 /Part-*/resources/_gen/
 /Part-*/.hugo_build.lock
 /.hugo_build.lock
+/Part-*/node_modules/
+/Part-*/hugo_stats.json
+/Part-*/package-lock.json

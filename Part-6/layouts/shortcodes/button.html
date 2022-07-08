@@ -1,0 +1,16 @@
+{{ $class := "btn-primary" }}
+{{ with .Get "class" }}
+{{ $class = . }}
+{{ end }}
+
+{{ $label := "" }}
+{{ with .Get "label" }}
+{{ $label = . }}
+{{ end }}
+
+{{ $href := "#" }}
+{{ with .Get "href" }}
+{{ $href = . }}
+{{ end }}
+
+{{ printf "<a class=\"btn %s\" type=\"button\" href=\"%s\">%s</a>" $class $href $label | htmlUnescape | safeHTML }}

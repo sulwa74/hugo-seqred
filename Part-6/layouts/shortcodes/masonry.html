@@ -1,0 +1,8 @@
+{{ $class := .Get "class" }}
+{{ with $class }}
+{{ printf "<div class=\"row %s\" data-masonry='{\"percentPosition\": true }'>" . | htmlUnescape | safeHTML }}
+{{ else }}
+{{ printf "<div class=\"row\" data-masonry='{\"percentPosition\": true }'>" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ .Inner | markdownify }}
+{{ printf "</div>"| htmlUnescape | safeHTML }}

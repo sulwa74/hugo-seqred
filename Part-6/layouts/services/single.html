@@ -1,0 +1,33 @@
+{{ define "main"}}
+<div class="d-block">
+    <div id="service-gallery" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img
+                  src="{{- .Params.image -}}"
+                  class="d-block w-100 carousel-scale"
+                  alt="{{- .Params.short -}}"
+                />
+                <div class="carousel-caption">
+                  <div class="container pt-4">
+                    <div class="row">
+                      <div class="col-md-6 col-lg-5">
+                        <h1 class="shadow">{{ .Title }}</h1>
+                        <p class="pt-2 ps-4 d-lg-none shadow">{{ .Params.short }}</p>
+                        <p class="pt-2 ps-4 d-none d-lg-block shadow">
+                          {{ .Params.description }}
+                        </p>
+                      </div>
+                      <div class="col-md-6 col-lg-7"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>  
+</div>
+<div class="py-4">
+    {{ .Content }}
+</div>
+
+{{ end }}

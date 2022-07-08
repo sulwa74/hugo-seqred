@@ -1,0 +1,27 @@
+{{ $inner := .Inner | markdownify }}
+{{ $inner = replace $inner "<p class=\"card-text\"></p>" ""}}
+{{ $inner = replace $inner "<p>" "<p class=\"card-text\">"}}
+    
+{{- printf "<div class=\"card border-0\">" | htmlUnescape | safeHTML -}}
+{{ with .Get "image" }}
+{{- printf "<div class=\"row g-0\">" | htmlUnescape | safeHTML -}}
+{{- printf "<div class=\"col-md-4 p-3 text-center\">" | htmlUnescape | safeHTML -}}
+{{- printf "<img class=\"img-fluid\" src=\"%s\">" . | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{ end }}
+{{ with .Get "image" }}
+{{- printf "<div class=\"col-md-8\">" | htmlUnescape | safeHTML -}}
+{{ end }}
+{{- printf "<div class=\"card-body\">" | htmlUnescape | safeHTML -}}
+{{ with .Get "title" }}
+{{- printf "<h4 class=\"card-title\">%s</h4>" . | htmlUnescape | safeHTML -}}
+{{ end }}
+{{- printf "<p class=\"card-text\">" | htmlUnescape | safeHTML -}}
+{{- printf "%s" $inner | htmlUnescape | safeHTML -}}
+{{- printf "</p>" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{ with .Get "image" }}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{ end }}
+{{ printf "</div>" | htmlUnescape | safeHTML }}

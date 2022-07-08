@@ -1,0 +1,16 @@
+{{ $class := .Get "class" }}
+{{ $innerclass := .Get "innerclass" }}
+{{ with $class }}
+{{ printf "<div class=\"col %s\">" $class | htmlUnescape | safeHTML }}
+{{ else }}
+{{ printf "<div class=\"col\">" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ with $innerclass }}
+{{ printf "<div class=\"%s\">" .  | htmlUnescape | safeHTML }}
+{{ end }}
+{{ .Inner | markdownify }}
+{{ with $innerclass }}
+{{ printf "</div>" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ printf "</div>" | htmlUnescape | safeHTML }}
+    

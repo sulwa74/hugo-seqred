@@ -1,0 +1,94 @@
+{{ $class := "" }}
+{{ with .Get "class" }}
+{{ $class = . }}
+{{ end }}
+
+{{ $bodyclass := "" }}
+{{ with .Get "body-class" }}
+{{ $bodyclass = . }}
+{{ end }}
+
+{{ $image := "" }}
+{{ with .Get "image" }}
+{{ $image = . }}
+{{ end }}
+
+{{ $title := "" }}
+{{ with .Get "title" }}
+{{ $title = . }}
+{{ end }}
+
+{{ $image_position := "top" }}
+{{ with .Get "image-position" }}
+{{ $image_position = lower . }}
+{{ end }}
+
+{{ $image_class := "" }}
+{{ with .Get "image-class" }}
+{{ $image_class = . }}
+{{ end }}
+
+
+{{ if eq $image_position "left" }}
+{{ $image_class = "img-fluid" | printf "%s %s" $image_class }}
+{{ else if eq $image_position "right" }}
+{{ $image_class = "img-fluid" | printf "%s %s" $image_class  }}
+{{ else if eq $image_position "bottom" }}
+{{ $image_class = "card-img-bottom" | printf "%s %s" $image_class  }}
+{{ else if eq $image_position "overlay" }}
+{{ $image_class = "card-img" | printf "%s %s" $image_class }}
+{{ end }}
+
+{{ $inner := .Inner | markdownify | htmlUnescape | safeHTML }}
+{{ $inner = replace $inner "<p>" "<p class=\"card-text\">"}}
+{{ $inner = replaceRE  "<h([0-9])?( +id=\".*\")?>" "<h$1 class=\"card-title\"$2>" $inner }}
+
+{{ printf "<div class=\"card %s\">" $class | htmlUnescape | safeHTML }}
+{{ if and 
+  (ge (len $image) 1) 
+  (or ( eq $image_position "overlay" ) ( eq $image_position "top") )
+}}
+{{ printf "<img src=\"%s\" class=\"%s\">" $image $image_class | htmlUnescape | safeHTML }}
+{{ end }}    
+{{ if and 
+    (ge (len $image) 1)
+    (eq $image_position "left" )
+}}
+{{ printf "<div class=\"row g-0\">" | htmlUnescape | safeHTML }}
+{{ printf "<div class=\"col-md-4\">" | htmlUnescape | safeHTML }}
+{{ printf "<img src=\"%s\" class=\"%s\">" $image $image_class | htmlUnescape | safeHTML }}
+{{ printf "</div>" | htmlUnescape | safeHTML }}
+{{ printf "<div class=\"col-md-8\">" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ if and 
+  (ge (len $image) 1)
+  (eq $image_position "right" )
+}}
+{{ printf "<div class=\"row g-0\">" | htmlUnescape | safeHTML }}
+{{ printf "<div class=\"col-md-8\">" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ printf "<div class=\"card-body %s\">" $bodyclass | htmlUnescape | safeHTML }}
+{{- printf "%s" $inner | htmlUnescape | safeHTML -}}
+{{- printf "</div>" | htmlUnescape | safeHTML -}}
+{{ if and 
+  (ge (len $image) 1)
+  (eq $image_position "right" )
+}}
+{{ printf "</div>" | htmlUnescape | safeHTML }}
+{{ printf "<div class=\"col-md-4\">" | htmlUnescape | safeHTML }}
+{{ printf "<img src=\"%s\" class=\"%s\">" $image $image_class | htmlUnescape | safeHTML }}
+{{ printf "</div>" | htmlUnescape | safeHTML }}  
+{{ end }}
+{{ if and 
+  (ge (len $image) 1) 
+  (eq $image_position "bottom")
+}}
+{{ printf "<img src=\"%s\" class=\"%s\">" $image $image_class | htmlUnescape | safeHTML }}
+{{ end }}    
+{{ if and 
+  (ge (len $image) 1)
+  (eq $image_position "left" )
+}}
+{{ printf "</div>" | htmlUnescape | safeHTML }}
+{{ end }}
+{{ printf "</div></div>" | htmlUnescape | safeHTML }}

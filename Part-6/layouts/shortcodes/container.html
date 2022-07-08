@@ -1,0 +1,3 @@
+<div class="container{{ with .Get "type" }}{{ if eq "fluid" . }}-fluid{{ end }}{{ end }} {{ .Get "class" }}">
+    {{ .Inner | markdownify }}
+</div>

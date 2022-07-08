@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{{- partial "tags/favicons" . -}}
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  {{ $inServerMode := .Site.IsServer }}
+  {{ $sass         := resources.Get "scss/main.scss" | resources.ExecuteAsTemplate "style.main.scss" . }}
+  {{ $cssTarget    := "css/main.css" }}
+  {{ $cssOpts      := cond ($inServerMode) (dict "targetPath" $cssTarget "enableSourceMap" true) (dict "targetPath" $cssTarget "outputStyle" "compressed") }}
+  {{ if or ($inServerMode) (eq .Site.Params.env "LOCAL") }}
+  {{ $css := $sass | toCSS $cssOpts | resources.PostCSS | minify  | resources.PostProcess }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" media="screen">
+  {{ else }}
+  {{ $css := $sass | toCSS $cssOpts | resources.PostCSS | minify | fingerprint | resources.PostProcess  }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" media="screen">
+  {{ end }}
+  
+  {{- partial "tags/title" . -}}
+  {{- partial "tags/description" . -}}
+  {{- partial "tags/link" . -}}
+  {{- partial "tags/language" . -}}
+  {{- partial "tags/image" . -}}
+  {{- partial "tags/date" . -}}
+  {{- partial "tags/sitemap" . -}}
+  {{- partial "tags/article" . -}}
+  {{- partial "tags/searchengine" . -}}
+  {{- partial "tags/socialmedia" . -}}
+  {{- partial "tags/theme" . -}}
+
+
+

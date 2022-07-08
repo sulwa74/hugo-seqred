@@ -1,0 +1,26 @@
+<li class="nav-item dropdown no-wrap ms-lg-auto">
+  <a
+      href="#"
+      class="nav-link {{ if gt (len .Translations) 1 }}dropdown-toggle{{ end }}"
+      role="button"
+      {{ if gt (len .Translations) 1 }}data-bs-toggle="dropdown" aria-expanded="false"{{ end }}>
+    <img src="/img/{{.Language}}.jpg" class="rounded-circle float-right shadow-sm" alt="{{ .Language.LanguageName }}" />
+  </a>
+  {{ if gt (len .Translations) 1 }}
+  <ul class="dropdown-menu dropdown-menu-md-end dropdown-menu-lg-end dropdown-menu-xl-end" aria-labelledby="dropdown-lang" role="button" style="min-width: 3.2em">
+  {{ range .Translations }}
+  <li class="nav-item no-wrap" style="width: 100%">
+    <a
+      href="{{ .Permalink | absURL }}"
+      class="nav-link dropdown-item"
+      hreflang="{{ .Site.LanguageCode}}"
+      lang="{{.Lang}}"
+    >
+      <img src="/img/{{.Language}}.jpg" class="rounded-circle float-right shadow-sm" alt="{{ .Language.LanguageName }}" />
+      {{ .Language }}
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}
+</li>
